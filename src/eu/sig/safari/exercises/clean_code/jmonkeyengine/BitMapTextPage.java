@@ -1,42 +1,39 @@
-/** 
- * NOTICE: 
- * - This file has been heavily modified by the Software Improvement Group (SIG) to adapt it for training purposes
- * - The original file can be found here: https://github.com/jMonkeyEngine/jmonkeyengine
- * - All dependencies in this file have been stubbed, some methods and/or their implementations have been altered
- * - Due to the educational intent, this file has been intentionally modified by SIG to exhibit lower quality than the original
+/**
+ * NOTICE: - This file has been heavily modified by the Software Improvement Group (SIG) to
+ * adapt it for training purposes - The original file can be found here:
+ * https://github.com/jMonkeyEngine/jmonkeyengine - All dependencies in this file have been
+ * stubbed, some methods and/or their implementations have been altered - Due to the
+ * educational intent, this file has been intentionally modified by SIG to exhibit lower
+ * quality than the original
  * 
- * ORIGINAL FILE HEADER: 
+ * ORIGINAL FILE HEADER:
  */
 /*
- * Copyright (c) 2009-2012 jMonkeyEngine
- * All rights reserved.
+ * Copyright (c) 2009-2012 jMonkeyEngine All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
  *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
+ * * Redistributions of source code must retain the above copyright notice, this list of
+ * conditions and the following disclaimer.
  *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
+ * * Redistributions in binary form must reproduce the above copyright notice, this list of
+ * conditions and the following disclaimer in the documentation and/or other materials provided
+ * with the distribution.
  *
- * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
- *   may be used to endorse or promote products derived from this software
- *   without specific prior written permission.
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors may be used to
+ * endorse or promote products derived from this software without specific prior written
+ * permission.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+ * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package eu.sig.safari.exercises.clean_code.jmonkeyengine;
 
@@ -66,8 +63,8 @@ import eu.sig.safari.exercises.stubs.jmonkeyengine.VertexBuffer;
  */
 class BitmapTextPage extends Geometry {
 
-	private static final Logger LOGGER = LoggerFactory.createLogger(BitmapTextPage.class);
-	
+    private static final Logger LOGGER = LoggerFactory.createLogger(BitmapTextPage.class);
+
     private final float[] pos;
     private final float[] tc;
     private final short[] idx;
@@ -75,7 +72,6 @@ class BitmapTextPage extends Geometry {
     private final int page;
     private final Texture2D texture;
     private final LinkedList<LetterQuad> pageQuads = new LinkedList<LetterQuad>();
-
 
     BitmapTextPage(BitmapFont font, boolean arrayBased, int page) {
         super("BitmapFont", new Mesh());
@@ -93,7 +89,7 @@ class BitmapTextPage extends Geometry {
         }
 
         setMaterial(mat);
-        this.texture = (Texture2D) mat.getTextureParam("ColorMap").getTextureValue();
+        this.texture = (Texture2D)mat.getTextureParam("ColorMap").getTextureValue();
 
         // initialize buffers
         Mesh m = getMesh();
@@ -112,10 +108,10 @@ class BitmapTextPage extends Geometry {
          * - Skye (sbook)
          */
         if (arrayBased) {
-            pos = new float[4 * 3];  // 4 verticies * 3 floats
-            tc = new float[4 * 2];  // 4 verticies * 2 floats
-            idx = new short[2 * 3];  // 2 triangles * 3 indices
-            color = new byte[4 * 4];   // 4 verticies * 4 bytes
+            pos = new float[4 * 3]; // 4 verticies * 3 floats
+            tc = new float[4 * 2]; // 4 verticies * 2 floats
+            idx = new short[2 * 3]; // 2 triangles * 3 indices
+            color = new byte[4 * 4]; // 4 verticies * 4 bytes
         } else {
             pos = null;
             tc = null;
@@ -124,11 +120,7 @@ class BitmapTextPage extends Geometry {
         }
     }
 
-
-
-
-
-	BitmapTextPage(BitmapFont font, boolean arrayBased) {
+    BitmapTextPage(BitmapFont font, boolean arrayBased) {
         this(font, arrayBased, 0);
     }
 
@@ -143,35 +135,30 @@ class BitmapTextPage extends Geometry {
     @Override
     public BitmapTextPage clone() {
         BitmapTextPage clone;
-		try {
-			clone = (BitmapTextPage) super.clone();
-	        //clone.mesh = mesh.deepClone();
-	        return clone;
-		} catch (CloneNotSupportedException e) {
-			//ignored
-		}
-		
-		return null;
+
+        clone = (BitmapTextPage)super.clone();
+        //clone.mesh = mesh.deepClone();
+        return clone;
     }
 
     /**
      *  Called internally by com.jme3.util.clone.Cloner.  Do not call directly.
      */
     @Override
-    public void cloneFields( Cloner cloner, Object original ) {
-        
+    public void cloneFields(Cloner cloner, Object original) {
+
         Mesh originalMesh = this.mesh;
-    
+
         super.cloneFields(cloner, original);
-        
+
         // BitmapTextPage always requires a new mesh or different
         // BitmapText instances will clobber one another.
         // But if we were already deep cloning meshes then we don't
         // want to do it again... so we'll check first.
-        if( this.mesh == originalMesh ) {
+        if (this.mesh == originalMesh) {
             this.mesh = mesh.deepClone();
-        }        
-    }        
+        }
+    }
 
     // Here is where one might add JmeCloneable related stuff except
     // the old clone() method doesn't actually bother to clone anything.
@@ -201,10 +188,10 @@ class BitmapTextPage extends Geometry {
         VertexBuffer ib = m.getBuffer(Type.Index);
         VertexBuffer cb = m.getBuffer(Type.Color);
 
-        FloatBuffer fpb = (FloatBuffer) pb.getData();
-        FloatBuffer ftb = (FloatBuffer) tb.getData();
-        ShortBuffer sib = (ShortBuffer) ib.getData();
-        ByteBuffer bcb = (ByteBuffer) cb.getData();
+        FloatBuffer fpb = (FloatBuffer)pb.getData();
+        FloatBuffer ftb = (FloatBuffer)tb.getData();
+        ShortBuffer sib = (ShortBuffer)ib.getData();
+        ByteBuffer bcb = (ByteBuffer)cb.getData();
 
         // increase capacity of buffers as needed
         fpb.rewind();
@@ -228,11 +215,11 @@ class BitmapTextPage extends Geometry {
         ib.updateData(sib);
 
         try {
-			m.updateCounts();
-		} catch (Exception e) {
-			LOGGER.error(e.getStackTrace());
-			throw e;
-		}
+            m.updateCounts();
+        } catch (Exception e) {
+            LOGGER.error(e.getStackTrace());
+            throw e;
+        }
 
         // go for each quad and append it to the buffers
         if (pos != null) {
@@ -261,6 +248,5 @@ class BitmapTextPage extends Geometry {
 
         updateModelBound();
     }
-
 
 }
