@@ -26,16 +26,18 @@ public class BinarySearchTreeTest {
         assertEquals("failure message is printed if actual is not what was expected", expected, actual);
     }
 
-    /** These are the actual tests to implement */
+    /** Here are the actual tests to implement */
     @Test
     public void testTreeValueInRoot() {
         fail("Not yet implemented");
     }
 
+    @Test
     public void testValueInLeftSubtree() {
         fail("Not yet implemented");
     }
 
+    @Test
     public void testValueInRightSubtree() {
         fail("Not yet implemented");
     }
