@@ -1,5 +1,6 @@
 package eu.sig.safari.exercises.automate_tests.binarytrees;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
@@ -17,6 +18,15 @@ public class BinarySearchTreeTest {
         root = new BinaryTreeNode<>(10);
     }
 
+    /** Here is an example of how to use an assertion to check equality between two values */
+    @Test
+    public void testBasicExample() {
+        int actual = 1;
+        int expected = 0;
+        assertEquals("failure message is printed if actual is not what was expected", expected, actual);
+    }
+
+    /** These are the actual tests to implement */
     @Test
     public void testTreeValueInRoot() {
         fail("Not yet implemented");
